@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Promises Handson</h1>
+    <hr>
+    <p>Q1- Write one example explaining how you can write a callback function.</p>
+    <pre>Ans-function calculate(a,b){
+        return a*b
+    }
+    console.log(calculate(10,12))
+    
+    
+     function displayData(name,age){
+        console.log(`${name} : age is ${age}`);
+     }
+     displayData("ak",calculate(5,4)); </pre>
+
+    <hr>
+    <p>Q2- "Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7"</p>
+        <pre>Ans-Callback hell refers to a situation where multiple nested callbacks are used, leading to code that is hard to read, understand, and maintain. It often occurs when 
+    dealing with asynchronous operations that depend on each other
+           
+            setTimeout(()=>{
+                console.log("1");
+                setTimeout(()=>{
+                    console.log("2");
+                    setTimeout(()=>{
+                        console.log("3");  
+                        setTimeout(()=>{
+                            console.log("4"); 
+                            setTimeout(()=>{
+                                console.log("5");
+                                setTimeout(()=>{
+                                    console.log("6");
+                                    setTimeout(()=>{
+                                        console.log("7");
+                                        
+                                    },7000)
+                                },6000)
+                             },5000)
+                        },4000)
+                    },3000)
+                },2000)
+             },1000)
+             </pre>
+         <hr>
+         <p>Q3- "Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7" </p>
+            <pre>Ans- function printNumbers() {
+                for (let i = 1; i <= 7; i++) {
+                  setTimeout(() => {
+                    console.log(i);
+                  }, i * 1000);
+                }
+              }
+              
+              printNumbers();
+              </pre>
+              <hr>
+              <p>Q4- "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+                then it should go to reject the state and catch the error and print Promise Rejected "</p>
+                <pre>
+                    let variable="Yes"
+                    
+                    function myPromise(p){
+                        return new Promise((resolve,reject)=>{
+                        if(p==="Yes")
+                        {
+                            resolve("Promise Resolved");
+                    }else
+                    {
+                            reject(Error("Promise Rejected"));
+                    
+                    }
+                    })
+                    }
+                    myPromise(variable)
+                    .then((data)=>{
+                        console.log(data);
+                    }).catch((error)=>{
+                        console.log(error);
+                    })</pre>
+                    <hr>
+                    <p>Q5- Create examples to explain callback function</p>
+                    <pre> Ans- A callback function is a function that is passed as an argument to another function and is invoked or called inside that function. 
+      The purpose of a callback function is to be executed at a certain point in the execution of the containing function, typically after some asynchronous operation or long-running task is completed.
+                        
+                         function greet(name, callback) {
+                        console.log(`Hello, ${name}!`);
+                        callback();
+                      }
+                      
+                      function sayGoodbye() {
+                        console.log("Goodbye!");
+                      }
+                      
+                      greet("John", sayGoodbye);
+                      </pre>
+                      <hr>
+                      <p>Q6- Create examples to explain callback hell function</p>
+                      <pre>Ans- setTimeout(()=>{
+                        console.log("1");
+                        setTimeout(()=>{
+                            console.log("2");
+                            setTimeout(()=>{
+                                console.log("3");  
+                                setTimeout(()=>{
+                                    console.log("4"); 
+                                    setTimeout(()=>{
+                                        console.log("5");
+                                        setTimeout(()=>{
+                                            console.log("6");
+                                            setTimeout(()=>{
+                                                console.log("7");  
+                                            },7000)
+                                        },6000)
+                                     },5000)
+                                },4000)
+                            },3000)
+                        },2000)
+                     },1000)</pre>
+                     <hr>
+                     <p>Q7- Create examples to explain promises function </p>
+                     <pre>Ans- A promise is an object in JavaScript that represents the eventual completion or failure of an asynchronous operation and its resulting value. 
+     It is commonly used for handling asynchronous tasks such as making API requests, reading files, or performing database operations. 
+     A promise is created using the new Promise() constructor, which takes a function as an argument. This function, called the executor function, has two parameters: 
+     resolve and reject. Inside the executor function,you perform the asynchronous operation, and when it completes successfully, you call resolve with the resulting value.
+     If an error occurs, you call reject with an error object.
+                        
+                         const promise = new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                          resolve("Promise resolved successfully");
+                        }, 2000);
+                      })
+                      promise.then((result) => {
+                        console.log(result);
+                      }).catch((error) => {
+                        console.log(error);
+                      });
+                      </pre>
+                      <hr>
+                      <p>Q8- Create examples to explain async await function</p>
+                      <pre>Ans- The async keyword is used to define an asynchronous function. Within an async function, you can use the await keyword to pause the execution of the function until
+     a promise is fulfilled and obtain the result. This allows you to write code that looks more like synchronous code, even though it is actually asynchronous.
+                        
+                       function display(alpha, timeout) {
+                        return new Promise((resolve) => {
+                          setTimeout(() => {
+                            console.log(alpha);
+                            resolve();
+                          }, timeout);
+                        });
+                      }
+                      
+                      async function visible() {
+                        await display("a", 2000);
+                        await display("e", 4000);
+                        await display("i", 1000);
+                        await display("o", 2000);
+                        await display("u", 5000);
+                      }
+                      
+                      visible();</pre>
+                      <hr>
+                      <p>Q9- Create examples to explain promise.all function</p>
+                      <pre>Ans-  The Promise.all() function waits for all the promises in the iterable to fulfill or reject. If all promises fulfill successfully, it resolves with an array of the 
+    resolved values in the same order as the original iterable. If any of the promises reject, it immediately rejects with the reason of the first rejected promise.
+                        const promise1= new Promise((resolve,reject)=>{
+                        setTimeout(()=>{
+                          resolve(" promise 1 resolve")
+                        },2000)
+                      })
+                        const promise2= new Promise((resolve,reject)=>{
+                          setTimeout(()=>{
+                            resolve("Promise2 resolve")
+                          },1000)
+                        })
+                        const promise3= new Promise((resolve,reject)=>{
+                          setTimeout(()=>{
+                            resolve("Promise3 resolve")
+                          },1500)
+                        })
+                        Promise.all ([promise1,promise2,promise3])
+                        .then((result)=>{
+                       console.group("All promises done")
+                        }) </pre>
+
+    <script src="promise.js"></script>
+</body>
+</html>
